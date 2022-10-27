@@ -6,6 +6,7 @@ var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
 var juejinRouter = require('./routes/juejin');
+var articleRouter = require('./routes/article')
 
 var app = express();
 
@@ -21,6 +22,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/juejin', juejinRouter);
+app.use('/article',articleRouter)
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
@@ -37,8 +39,6 @@ app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.render('error');
 });
-app.listen(8088,(req,res)=>{
-  console.log("http://127.0.0.1:8088")
-})
+
 
 module.exports = app;
